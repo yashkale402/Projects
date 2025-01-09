@@ -15,6 +15,10 @@
             to { width: 100%; }
         }
 
+        @keyframes blink {
+            50% { border-color: transparent; }
+        }
+
         body {
             font-family: Arial, sans-serif;
             line-height: 1.6;
@@ -25,27 +29,30 @@
             animation: fadeIn 2s ease-in-out;
         }
 
-        header {
-            text-align: center;
+        nav {
             background-color: #4caf50;
-            color: white;
             padding: 10px 0;
-            position: relative;
-            overflow: hidden;
+            display: flex;
+            justify-content: center;
         }
 
-        header h1 {
-            display: inline-block;
+        nav h1 {
+            font-size: 1.8em;
+            color: white;
+            overflow: hidden;
             white-space: nowrap;
-            overflow: hidden;
-            border-right: 3px solid white;
+            border-right: 2px solid white;
             width: 0;
-            animation: typing 4s steps(40, end) 1s forwards, blink-caret 0.75s step-end infinite;
+            animation: typing 4s steps(30, end) 1s forwards, blink 0.75s step-end infinite;
+            display: inline-block;
         }
 
-        @keyframes blink-caret {
-            from, to { border-color: transparent; }
-            50% { border-color: white; }
+        @media (prefers-reduced-motion: reduce) {
+            nav h1 {
+                animation: none;
+                border-right: none;
+                width: auto;
+            }
         }
 
         .container {
@@ -56,7 +63,6 @@
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             padding: 20px;
-            animation: fadeIn 2s ease-in-out;
         }
 
         .image {
@@ -67,7 +73,6 @@
             max-width: 100%;
             height: auto;
             border-radius: 8px;
-            animation: fadeIn 2s ease-in-out;
         }
 
         .info {
@@ -82,12 +87,38 @@
         .info p {
             text-align: justify;
         }
+
+        .audio {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        audio {
+            border: 2px solid #4caf50;
+            border-radius: 5px;
+            padding: 5px;
+        }
+
+        @media (max-width: 600px) {
+            nav h1 {
+                font-size: 1.2em;
+            }
+            .container {
+                padding: 15px;
+            }
+            .info h2 {
+                font-size: 1.2em;
+            }
+            .info p {
+                font-size: 0.9em;
+            }
+        }
     </style>
 </head>
 <body>
-    <header>
+    <nav>
         <h1>Tulsi - The Holy Basil</h1>
-    </header>
+    </nav>
     <div class="container">
         <div class="image">
             <img src="tulsi.jpg" alt="Tulsi Plant">
@@ -103,6 +134,12 @@
                 The plant requires well-draining soil, regular sunlight, and moderate watering. Its leaves can be consumed fresh, dried, or as tea
                 to harness its medicinal benefits.
             </p>
+        </div>
+        <div class="audio">
+            <audio controls>
+                <source src="Tulsi_.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
         </div>
     </div>
 </body>
